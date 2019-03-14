@@ -1,14 +1,13 @@
- function ODE()
- [t,Y] = ode45(@sir_ODE,[0 50],[99 1 0]);
+ function ODE_test()
+ [t,Y] = ode45(@sir_ODE,[0 500],[99 1 0]);
  plot(t,Y)
- caption = strcat("SIR Plot with alpha = 0.01 & beta = 0.1" )
- title(caption, 'FontSize', 15, 'Color', 'black');
+ caption = strcat("SIR Plot with alpha = 0.01 & beta = 0.01" );
+ title(caption, 'FontSize', 10, 'Color', 'black');
  legend('Susceptible','Infective','Recovered')
  function sir = sir_ODE(t,y)
- a = .01;
- b = .1; 
+ a = .01; b = 0.05; 
  
- sir(1) =-a*y(1)*y(2); 
- sir(2) = a*y(1)*y(2)-b*y(2);
- sir(3) = b*y(2);
- sir = [sir(1) sir(2) sir(3)];
+ sir(1) =-b*y(1)*y(2); 
+ sir(2) = b*y(1)*y(2)-a*y(2);
+ sir(3) = a*y(2);
+ sir = [sir(1) sir(2) sir(3)]';
